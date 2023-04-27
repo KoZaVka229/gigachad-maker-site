@@ -1,0 +1,93 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<form id="form" method="post" enctype="multipart/form-data"> {% csrf_token %}
+    <div>
+        {{ form.image }}
+
+        <div class="input-group mt-2">
+            <span class="input-group-text">Width</span>
+            {{ form.frame_width }}
+            <span class="input-group-text">Height</span>
+            {{ form.frame_height }}
+        </div>
+
+        <a id="moves-btn" class="btn btn-dark w-100 mt-2" data-bs-toggle="modal" data-bs-target="#moves">Moves</a>
+
+        <input type="submit" class="btn btn-primary mt-3 w-100" value="Send">
+
+        <div style="display: none">{{ form.moves_json }}</div>
+    </div>
+</form>
+{% endblock content %}
+
+{% block body %}
+{{ block.super }}
+<div class="modal fade" id="moves" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog w-fit">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="createMoveLabel">Create Moves</h1>
+                <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="moves-body">
+                    <canvas id="canvas" width="400" height="400">Canvas not support!</canvas>
+                    <div id="control-panel">
+                        <div id="points">
+                            <div class="points-row vertical-input-group" id="template-points-row">
+                                <div class="first-point input-group input-group-sm">
+                                    <span class="input-group-text">X1</span>
+                                    <input type="number" min="0" class="form-control x1-input"
+                                            title="X первой точки">
+
+                                    <span class="input-group-text">Y1</span>
+                                    <input type="number" min="0" class="form-control y1-input"
+                                            title="Y первой точки">
+                                </div>
+
+                                <div class="second-point input-group input-group-sm">
+                                    <span class="input-group-text">X2</span>
+                                    <input type="number" min="0" class="form-control x2-input"
+                                            title="X второй точки">
+
+                                    <span class="input-group-text">Y2</span>
+                                    <input type="number" min="0" class="form-control y2-input"
+                                            title="Y второй точки">
+                                </div>
+
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-text">CW</span>
+                                    <input type="number" min="1" class="form-control camsize-width-input"
+                                            title="Ширина камеры">
+
+                                    <span class="input-group-text">CH</span>
+                                    <input type="number" min="1" class="form-control camsize-height-input"
+                                            title="Высота камеры">
+                                </div>
+
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-text">F</span>
+                                    <input type="number" min="1" value="60" class="form-control frames-input"
+                                            title="Количество кадров, доступных для перемещения">
+
+                                    <span class="input-group-text">L</span>
+                                    <input type="color" value="#0000ff" class="form-control color-input"
+                                            title="Цвет линии">
+                                </div>
+
+                                <div class="btn-group btn-group-sm w-100">
+                                    <button class="btn btn-secondary delete-button">Удалить</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script defer src="{% static 'core/script.js' %}"></script>
+{% endblock body %}

@@ -1,0 +1,67 @@
+#canvas {
+    display: inline-block;
+    vertical-align: top;
+    border: 1px solid black;
+}
+
+#control-panel {
+    display: inline-block;
+    vertical-align: top;
+    max-height: 400px;
+    width: 400px;
+    overflow: auto;
+}
+
+#template-points-row {
+    display: none;
+}
+
+.points-row {
+    display: inline-block;
+    width: 190px;
+}
+
+.points-row:nth-of-type(1n + 4) {
+    margin-top: 5px;
+}
+
+.points-row:nth-of-type(odd) {
+    margin-left: 10px;
+}
+
+.points-row > .btn-group > .btn:first-child, .points-row > .btn-group > .btn:last-child {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.w-fit {
+    width: fit-content;
+    max-width: 100%;
+}
+
+
+.vertical-input-group .input-group:first-child {
+    padding-bottom: 0;
+}
+.vertical-input-group .input-group:first-child * {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.vertical-input-group .input-group:last-child {
+    padding-top: 0;
+    border-radius: 0;
+}
+.vertical-input-group .input-group:last-child * {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.vertical-input-group .input-group:not(:last-child):not(:first-child) {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.vertical-input-group .input-group:not(:last-child):not(:first-child) * {
+    border-radius: 0;
+}
+.vertical-input-group .input-group:not(:first-child) * {
+    border-top: 0;
+}

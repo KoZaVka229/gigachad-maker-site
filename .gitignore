@@ -1,0 +1,5 @@
+.idea/
+venv/
+*/__pycache__/
+project/db.sqlite3
+project/logs
